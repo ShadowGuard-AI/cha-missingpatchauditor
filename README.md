@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # cha-MissingPatchAuditor
 Compares the installed software versions against a known vulnerabilities database (e.g., retrieved from NIST) and reports on missing security patches. - Focused on Assists with the automation of configuration hardening based on security best practices. Allows users to define configuration baselines in YAML or JSON format and automatically check system configurations against these baselines, highlighting deviations and suggesting corrective actions.
 
