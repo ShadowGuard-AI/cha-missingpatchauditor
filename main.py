@@ -137,6 +137,24 @@ def validate_data(data: Union[Dict, List], schema: Dict) -> None:
         raise
 
 
+def _version_key(version: str) -> Tuple:
+    """Split a version string into comparable segments.
+
+    Plain string comparison gets multi digit segments wrong: "1.9" sorts
+    after "1.10" as text, so a host on 1.9 was reported current against a
+    1.10 requirement. Numeric segments compare as integers here, other
+    segments as text, and the leading tag keeps the two kinds from ever
+    being compared against each other.
+    """
+    parts = []
+    for segment in str(version).replace("-", ".").split("."):
+        if segment.isdigit():
+            parts.append((0, int(segment), ""))
+        else:
+            parts.append((1, 0, segment))
+    return tuple(parts)
+
+
 def check_missing_patches(
     baseline_data: Dict, vulnerabilities_db: List[Dict]
 ) -> List[Dict]:
@@ -155,8 +173,8 @@ def check_missing_patches(
         installed_version = rule["installed_version"]
         required_version = rule["required_version"]
 
-        # Check if the installed version is less than the required version
-        if installed_version < required_version:
+        # Version strings are not numbers; compare them segment by segment.
+        if _version_key(installed_version) < _version_key(required_version):
             # Search for vulnerabilities related to this software and version
             for vulnerability in vulnerabilities_db:
                 if (
