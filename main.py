@@ -173,9 +173,19 @@ def check_missing_patches(
         installed_version = rule["installed_version"]
         required_version = rule["required_version"]
 
-        # Version strings are not numbers; compare them segment by segment.
+        # Two limits ride on the key above. A shorter version that is
+        # a prefix of the required one counts as older, so installed
+        # 1.2 against required 1.2.0 flags even though most projects
+        # mean the same release by both. And a text segment sorts
+        # after a bare ending, so 1.0rc1 counts as newer than 1.0,
+        # which inverts how prereleases actually rank.
         if _version_key(installed_version) < _version_key(required_version):
-            # Search for vulnerabilities related to this software and version
+            # A below required install only reaches the report when a
+            # database row matches its version as an exact string. An
+            # outdated package with no matching row, or a row written
+            # 1.9.0 against an installed 1.9, produces no entry at all,
+            # so the report understates the very thing it exists to
+            # list, and nothing in the output says a row was skipped.
             for vulnerability in vulnerabilities_db:
                 if (
                     vulnerability["software"] == software
