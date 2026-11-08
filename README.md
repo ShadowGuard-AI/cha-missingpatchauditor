@@ -1,12 +1,12 @@
-![The underside of an iceberg: a meltwater arch overhead, a grotto beyond, glass sponges below, and one far pink point, with no lettering anywhere](intro-banner.png)
+![A ringer holding a small robin gently in both hands while a second pair of hands closes the aluminium ring on its leg with ringing pliers, over the wooden measuring board](intro-banner.png)
 
 > Depth marker treatment noted first: a marker tied on a sounding line, Baloo Bhaina 2 in dark blue on pale ice.
 
 # cha-missingpatchauditor
 
-![A meltwater arch in cyan ice, a black mouth, and one small pink point inside it](logo.png)
+![A plain unmarked aluminium bird ring beside a pair of ringing pliers with wooden handles on a khaki canvas ringing case, the heading plate](logo.png)
 
-![The grotto flank with its title lettered on a frost pale band of ice inside the grotto entrance](banner.png)
+![A ringing station at dawn under a canvas shelter: one ringer measuring a small bird's wing against a wooden ruler over the board while the second writes in the red record book, mist nets and grey dawn behind](banner.png)
 
 ![Water in three depths: the flank still with a slow lure point, a particle current through the grotto mouth, and a glass sponge giving off a faint filtered cloud at long intervals](scene.svg)
 

@@ -3,96 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cha-missingpatchauditor: Iceberg Underside Grotto</title>
-<meta name="description" content="Compares installed software versions against a vulnerabilities database and reports on missing security patches.">
+<title>cha-missingpatchauditor: The Ringing Station</title>
 <style>
-@font-face{font-family:'Baloo Bhaina 2';src:url('fonts/BalooBhaina2.ttf') format('truetype');}
-@font-face{font-family:'Alegreya Sans';src:url('fonts/AlegreyaSans.ttf') format('truetype');}
-:root{--deep:#082040;--dark:#0a2a55;--cyan:#dff2f4;--cyan2:#bfe6ea;--green:#3f9e6e;--pink:#e86a92;--ink:#101820}
-*{box-sizing:border-box}body{margin:0;background:var(--deep);color:var(--ink);font-family:'Alegreya Sans',sans-serif;line-height:1.65}
-h1,h2,h3{font-family:'Baloo Bhaina 2',sans-serif;color:var(--dark)}
-.hero img.heroimg{width:100%;height:56vh;object-fit:cover;display:block}
-.hero .in{padding:1rem 6vw 2rem;max-width:1120px;margin:0 auto;width:100%;color:#eaf6f7}
-.hero h1{color:#fff;font-size:2rem;margin:.4rem 0}.logo{width:210px}
-main{padding:0 6vw 3rem;max-width:1120px;margin:0 auto;position:relative}
-main::before{content:'';position:absolute;left:2.4vw;top:0;bottom:0;width:4px;background:var(--green)}
-nav{display:flex;gap:.9rem;flex-wrap:wrap;margin:1.2rem 0}
-.btn{display:inline-block;text-decoration:none;color:var(--dark);font-family:'Baloo Bhaina 2',sans-serif;padding:.65rem 1.4rem;background:linear-gradient(180deg,#9fd8de,#5fb3bd);border:2px solid #c9a44a;border-radius:60% 60% 12px 12px/90% 90% 12px 12px;box-shadow:inset 0 0 0 2px var(--green)}
-.btn:hover{filter:brightness(1.18)}.btn:active{filter:brightness(.88)}.btn:focus-visible{outline:3px solid var(--green);outline-offset:4px}
-.panel{background:var(--cyan);padding:.4rem 1.8rem 1.5rem;margin:1.8rem 0;position:relative;border-top:10px solid #f4fbfb}
-.panel::after{content:'';position:absolute;left:12px;bottom:10px;width:34px;height:22px;background:radial-gradient(circle at 8px 18px,#fff 3px,transparent 4px),radial-gradient(circle at 20px 16px,#fff 3px,transparent 4px)}
-.panel h2{font-size:1.55rem}
-pre{background:#eef8f8;padding:1rem;overflow-x:auto}.cmd{font-size:1.3rem;text-align:center;font-weight:700}
-a{color:#0a4a6a}a::before{content:'● ○ ● ';color:#e8e2cf;font-size:.7rem;letter-spacing:2px}
-a:hover::before{content:'● ○ ● ';color:var(--pink)}
-.btn::before{content:none}
-.divider{height:14px;margin:2rem 0;background:radial-gradient(circle at 8px 7px,var(--green) 5px,transparent 6px);background-size:36px 14px;opacity:.8}
-table{border-collapse:collapse;width:100%}td,th{padding:.5rem .7rem;border-bottom:1px solid #a8cdd2;text-align:left;vertical-align:top}
-td b{font-family:'Baloo Bhaina 2',sans-serif;color:var(--dark)}
-tr.req td:first-child{border-top:6px solid var(--pink)}
-.callout{background:#eef8ee;border-left:6px solid var(--green);padding:.2rem 1.4rem 1.1rem;margin:1.3rem 0}
-.callout h3{font-size:1.3rem}
-footer{padding:1rem 6vw 2.4rem;max-width:1120px;margin:0 auto;color:#dceef0}
+@font-face { font-family: "Karma"; src: url("fonts/Karma-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Karma"; src: url("fonts/Karma-700.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Roboto Condensed"; src: url("fonts/RobotoCondensed-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Roboto Condensed"; src: url("fonts/RobotoCondensed-700.woff2") format("woff2"); font-weight: 700; }
+:root {
+  --dawn: #eef0ee; --canvas: #e7e0cd; --ink: #33352f; --soft: #6d7268;
+  --khaki: #8a7d5a; --silver: #7e8891; --red: #b03a2e; --line: #d5cfba; --card: #fdfcf7;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--dawn); color: var(--ink); font-family: "Roboto Condensed", sans-serif; line-height: 1.55; font-size: 17px; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px 64px; }
+header.hero { text-align: center; padding: 52px 0 8px; }
+img.hero-logo { width: min(400px, 82vw); border-radius: 10px; box-shadow: 0 10px 34px rgba(51,53,47,.22); }
+h1, h2 { font-family: "Karma", serif; line-height: 1.15; }
+h1 { font-size: clamp(28px, 5vw, 44px); margin: 26px 0 6px; }
+.tagline { color: var(--soft); font-size: 19px; margin: 0 auto; max-width: 680px; }
+.btns { margin: 22px 0 6px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+a.btn { font-family: "Karma", serif; text-decoration: none; padding: 11px 22px; border-radius: 999px; border: 2px solid var(--khaki); color: var(--khaki); background: transparent; }
+a.btn.solid { background: var(--red); border-color: var(--red); color: #fff; }
+figure { margin: 30px 0; }
+figure img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 8px 28px rgba(51,53,47,.18); }
+figcaption { color: var(--soft); font-size: 15px; text-align: center; margin-top: 9px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 34px 0; }
+.fact { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--red); border-radius: 8px; padding: 14px 16px; }
+.fact b { display: block; font-family: "Karma", serif; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--khaki); margin-bottom: 4px; }
+section { margin: 38px 0; }
+h2 { font-size: 27px; margin: 0 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 7px; }
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+pre { background: #2f332c; color: #eef0e4; padding: 15px 18px; border-radius: 8px; overflow-x: auto; font-size: 14.5px; }
+table { border-collapse: collapse; width: 100%; background: var(--card); }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { font-family: "Karma", serif; background: var(--canvas); }
+.hold { background: #f7efe9; border: 1px solid #e3c8ba; border-left: 6px solid var(--red); border-radius: 8px; padding: 16px 20px; }
+.hold h2 { border: none; padding: 0; }
+.hold ul { margin: 8px 0 4px; padding-left: 20px; }
+footer { margin-top: 52px; border-top: 2px solid var(--line); padding-top: 16px; color: var(--soft); font-size: 14.5px; text-align: center; }
 </style>
 </head>
 <body>
+<div class="wrap">
 <header class="hero">
-<img class="heroimg" src="assets/intro-banner.png" alt="The underside of an iceberg: a meltwater arch overhead, a grotto beyond, glass sponges below, and one far pink point, with no lettering anywhere">
-<div class="in">
-<img class="logo" src="assets/logo.png" alt="A meltwater arch in cyan ice, a black mouth, and one small pink point inside it">
-<h1>cha-missingpatchauditor</h1>
-<p>A sounding line dropped down a single column. Most of the risk, like most of the berg, sits below the surface.</p>
-<nav>
-<a class="btn" href="#command">Compare the Versions</a>
-<a class="btn" href="#params">Write the Report to a File</a>
-<a class="btn" href="#params">Print to Standard Output</a>
-<a class="btn" href="#params">Show Help</a>
-</nav>
-</div>
+  <img class="hero-logo" src="assets/logo.png" alt="A plain unmarked aluminium bird ring beside a pair of ringing pliers with wooden handles on a khaki canvas ringing case">
+  <h1>cha-missingpatchauditor</h1>
+  <p class="tagline">The Ringing Station. A command line auditor that compares the installed software versions declared in a baseline file against a vulnerabilities database file and reports the missing security patches. Every bird is measured and entered only when the table holds its exact figure: both sides of the comparison are documents the user supplies, and nothing is fetched and no live system is inspected.</p>
+  <div class="btns">
+    <a class="btn solid" href="https://github.com/ShadowGuard-AI/cha-missingpatchauditor">The repository</a>
+    <a class="btn" href="https://github.com/ShadowGuard-AI/cha-missingpatchauditor/blob/main/main.py">main.py</a>
+  </div>
 </header>
-<main>
-<section class="panel"><h2>Two Files In, One Report Out</h2>
-<p>cha-missingpatchauditor compares installed software versions against a vulnerabilities database and reports on missing security patches.</p>
-<p>The inputs are files the user supplies. This is not a live scan of a running machine: a baseline file and a database file go in, and a report comes out.</p>
-<p><a href="https://github.com/ShadowGuard-AI/cha-missingpatchauditor">The repository on GitHub</a></p>
+
+<figure>
+  <img src="assets/intro-banner.png" alt="A ringer holding a small robin gently in both hands while a second pair of hands closes the aluminium ring on its leg with ringing pliers, over the wooden measuring board">
+  <figcaption>The ring is closed only on the bird that is actually in the hand.</figcaption>
+</figure>
+
+<div class="facts">
+  <div class="fact"><b>Baseline</b>A description plus rules: name, software, installed_version, required_version, and a severity of high, medium, or low</div>
+  <div class="fact"><b>Database</b>A JSON list of rows, each with software, version, cve, and description</div>
+  <div class="fact"><b>Match rule</b>A below required install is reported only when a database row matches its installed version as an exact string</div>
+  <div class="fact"><b>Exits</b>A missing file or a schema failure exits 1; a completed comparison exits 0</div>
+</div>
+
+<section>
+  <h2>Usage</h2>
+  <pre>python3 main.py -b BASELINE -d DATABASE [-o OUTPUT]</pre>
+  <p>Both files are schema validated before anything is compared. The report prints to stdout, or to the file named by -o.</p>
+  <table>
+    <tr><th>Option</th><th>What it does</th></tr>
+    <tr><td><code>-b</code>, <code>--baseline</code></td><td>Path to the baseline YAML or JSON file. Required.</td></tr>
+    <tr><td><code>-d</code>, <code>--database</code></td><td>Path to the vulnerabilities database JSON file. Required.</td></tr>
+    <tr><td><code>-o</code>, <code>--output</code></td><td>Path to the output file. Optional; if not specified, the report prints to stdout.</td></tr>
+    <tr><td><code>-h</code></td><td>Show help message and exit.</td></tr>
+  </table>
 </section>
-<div class="divider"></div>
-<section class="panel"><h2>Taking the Tool Aboard</h2>
-<pre>git clone https://github.com/ShadowGuard-AI/cha-missingpatchauditor
-cd cha-missingpatchauditor
-pip install -r requirements.txt</pre>
-<p>Three steps, printed exactly, in the order given.</p>
+
+<figure>
+  <img src="assets/banner.png" alt="A ringing station at dawn under a canvas shelter: one ringer measuring a small bird's wing against a wooden ruler over the board while the second writes in the red record book, mist nets and grey dawn behind">
+  <figcaption>Measurement on one side of the table, the kept record on the other.</figcaption>
+</figure>
+
+<section class="hold">
+  <h2>Stated limits</h2>
+  <ul>
+    <li>Exact match or silence: a below required install reaches the report only when a database row matches its installed version string for string. With the database row at version 1.0.1 against an installed 1.0.0, the tool printed "No missing patches found." and exited 0, and nothing in the output says a row was skipped.</li>
+    <li>The tool retrieves nothing and inspects no live system, whatever the repository description's retrieved from phrasing implies. The installed versions exist only as rules in the baseline file the user writes.</li>
+    <li>The version comparison is segment wise and numeric where segments are digits, with two recorded quirks: a shorter version that is a prefix of the required one counts as older, so 1.2 flags against 1.2.0, and a text segment sorts after a bare ending, so 1.0rc1 counts as newer than 1.0.</li>
+    <li>A rule already at its required version is not reported. A reported patch carries its CVE, its description, and the rule's severity.</li>
+  </ul>
 </section>
-<div class="divider"></div>
-<section class="panel" id="command"><h2>The Command</h2>
-<pre class="cmd">python3 main.py -b BASELINE -d DATABASE [-o OUTPUT]</pre>
-<p>Two required file paths and one optional output path. The brackets carry the optionality exactly as the original line carries it.</p>
-<div class="callout"><h3>Both Paths Are Required</h3><p>The baseline path and the database path are both required. Only the output path is optional.</p></div>
-</section>
-<div class="divider"></div>
-<section class="panel" id="params"><h2>Four Markers on the Line</h2>
-<table>
-<tr><td><b>-h</b></td><td>Shows the help message and exits.</td></tr>
-<tr class="req"><td><b>-b, --baseline</b></td><td>Path to the baseline YAML or JSON file, required. The head of this marker is painted krill pink.</td></tr>
-<tr class="req"><td><b>-d, --database</b></td><td>Path to the vulnerabilities database JSON file, required. The head of this marker is painted krill pink.</td></tr>
-<tr><td><b>-o, --output</b></td><td>Path to the output file, optional, and if it is not specified, output prints to stdout. This marker is left cyan.</td></tr>
-</table>
-</section>
-<div class="divider"></div>
-<section class="panel"><h2>Shapes of the Inputs</h2>
-<p>Baseline: a JSON or YAML object with a description string and a rules list. Each rule carries name, software, installed_version, required_version, and severity, where severity is high, medium, or low.</p>
-<p>Database: a JSON list of objects, each carrying software, version, cve, and description.</p>
-<p>The two shapes differ and are kept apart here, as they are in the source.</p>
-</section>
-<div class="divider"></div>
-<section class="panel"><h2>What the Runs Proved</h2>
-<p>A baseline with openssl installed at 1.0.0 and required at 1.1.1, plus a database row for openssl version 1.0.0, reported that missing patch with its CVE, description, and severity.</p>
-<p>A rule already at its required version was not reported. With -o, the same JSON report was written to the named file. A missing input file exits 1, and a baseline or database that fails its schema exits 1.</p>
-<div class="callout"><h3>Exact Match or Silence</h3><p>A below required install is reported only when a database row matches its installed version as an exact string. With the database row at version 1.0.1 instead of the installed 1.0.0, the tool printed "No missing patches found." and exited 0.</p><p>A code comment adds two quieter quirks: a shorter version that prefixes the required one counts as older, and a text segment such as a prerelease tag sorts after a bare ending.</p></div>
-</section>
-<div class="divider"></div>
-<section class="panel"><h2>MIT License</h2><pre>MIT License, see LICENSE.</pre></section>
-</main>
-<footer><p>Theme: Iceberg Underside Grotto. Type: Baloo Bhaina 2 for headings, Alegreya Sans for reading, both SIL Open Font License 1.1. The lettering reference CF SnowBall was reference only and is not embedded.</p></footer>
+
+<footer>
+  <p>The README of cha-missingpatchauditor closes with the line "MIT License, see LICENSE." Site type is set in Karma and Roboto Condensed, self-hosted under the SIL Open Font License.</p>
+</footer>
+</div>
 </body>
 </html>
