@@ -11,11 +11,10 @@
 ![Water in three depths: the flank still with a slow lure point, a particle current through the grotto mouth, and a glass sponge giving off a faint filtered cloud at long intervals](scene.svg)
 
 
-# cha-MissingPatchAuditor
 Compares installed software versions against a vulnerabilities database and reports on missing security patches.
 
 ## Install
-```
+```sh
 git clone https://github.com/ShadowGuard-AI/cha-missingpatchauditor
 cd cha-missingpatchauditor
 pip install -r requirements.txt
@@ -28,7 +27,7 @@ pip install -r requirements.txt
 
 > Dive log entry: Both Paths Are Required. The baseline path and the database path are both required; only the output path is optional.
 
-```
+```sh
 python3 main.py -b BASELINE -d DATABASE [-o OUTPUT]
 ```
 
@@ -65,4 +64,4 @@ python3 main.py -b BASELINE -d DATABASE [-o OUTPUT]
 ![A major divider: a tube worm crown of small fans across the full page width](sep-heavy.svg)
 
 ## License
-MIT License, see LICENSE.
+MIT License, see [LICENSE](LICENSE).
